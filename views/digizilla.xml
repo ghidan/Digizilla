@@ -1,0 +1,88 @@
+<odoo>
+
+        <menuitem id="digizilla_id" name="digizilla"/>
+
+    <record model="ir.ui.view" id="digizilla_form_view">
+        <field name="name">digizilla.form</field>
+        <field name="model">digizilla.digizilla</field>
+        <field name="arch" type="xml">
+            <form string="digizilla Form">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="join_date"/>
+                        <field name="country"/>
+                        <field name="gender" widget='radio' options="{'horizontal': true}"/>
+                        <field name="related_customer"/>
+                        <field name="company"/>
+                        <field name="notes" style="color:Red;"/>
+                    </group>
+                     <notebook>
+                               <page string="Notebook">
+                                  <field name="notebook"/>
+                               </page>
+
+                               <page string="Notebook">
+                                  <field name="notebook"/>
+                               </page>
+
+
+                              </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+     <record model="ir.ui.view" id="digizilla_tree_view">
+            <field name="name">digizilla.tree</field>
+            <field name="model">digizilla.digizilla</field>
+            <field name="arch" type="xml">
+                <tree string="digizilla Tree">
+                    <field name="name"/>
+                    <field name="join_date"/>
+                    <field name="country"/>
+                    <field name="gender"/>
+                    <field name="related_customer"/>
+                    <field name="company"/>
+                    <field name="notes"/>
+                    <field name="notebook"/>
+                </tree>
+            </field>
+        </record>
+
+
+    <record id="fair_hide_view_picking_form" model="ir.ui.view">
+        <field name="name">digizilla.form</field>
+        <field name="model">digizilla.digizilla</field>
+        <field name="inherit_id" ref="digizilla.digizilla_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="/form" position="attributes">
+                <attribute name="create">false</attribute>
+            </xpath>
+        </field>
+    </record>
+
+         <record model="ir.actions.act_window" id="digizilla_list_action">
+            <field name="name">Digizilla</field>
+            <field name="res_model">digizilla.digizilla</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">Create the first digizilla
+                </p>
+            </field>
+        </record>
+
+
+<menuitem id="digizilla_menu" name="Sales " parent="digizilla_id"
+                />
+
+     <menuitem id="digizilla_menu_left_child" name="Digizilla" parent="digizilla_menu"
+                  action="digizilla_list_action" sequence="12"/>
+
+</odoo>
+
